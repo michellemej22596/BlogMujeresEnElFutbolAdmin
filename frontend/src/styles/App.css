@@ -1,0 +1,29 @@
+#root {
+    margin: 0 auto;
+    text-align: center;
+    background-color: #fff3e6; /* Color de fondo más cálido y acogedor */
+    background-image: url('/path/to/restaurant-background.jpg'); /* Opcional: Añadir imagen de fondo */
+    background-size: cover; /* Asegurar que cubra todo el fondo */
+    background-position: center;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .active {
+    border-bottom: 1px solid #a85a32; /* Color ajustado para coherencia */
+  }
+  
+  .pedido-container {
+    padding: 1em;
+  }
+  
+  .pedido-title {
+    margin-bottom: 1em;
+  }
+  
+  .pedido-input-group {
+    margin-bottom: 1em;
+  }
