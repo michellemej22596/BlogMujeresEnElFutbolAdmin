@@ -2,6 +2,7 @@
 import express from 'express';
 import cors from 'cors';
 import postsRoutes from './routes/postRoutes.js';
+import authRoutes from './routes/authRoutes.js';
 import validateData from './middlewares/validation.js';
 
 const app = express();
@@ -12,6 +13,10 @@ app.use(cors());
 
 // Usar las rutas de posts
 app.use('/posts', postsRoutes);
+
+
+// Usar las rutas de autenticación
+app.use('/auth', authRoutes);
 
 // Middleware de validación
 app.use(validateData);
