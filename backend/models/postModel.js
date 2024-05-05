@@ -27,4 +27,6 @@ export async function updatePost(postId, title, description, team, goals_scored,
 
 // Borrar un post por su ID
 export async function deletePost(postId) {
-    const [result] = await pool.query
+    const [result] = await pool.query('DELETE FROM blog_posts WHERE id = ?', [postId]);
+    return result;
+}
