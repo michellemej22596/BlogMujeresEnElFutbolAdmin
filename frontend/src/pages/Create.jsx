@@ -8,17 +8,14 @@ const Create = () => {
   const [description, setDescription] = useState('');
   const [team, setTeam] = useState('');
   const [goalsScored, setGoalsScored] = useState('');
-  const [imageBase64, setImageBase64] = useState('');
+  const [imageUrl, setImageUrl] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
   const navigate = useNavigate();
 
-  // Manejar la conversión de una imagen a Base64
-  const handleImageUpload = (e) => {
-    const file = e.target.files[0];
-    const reader = new FileReader();
-    reader.onloadend = () => setImageBase64(reader.result);
-    reader.readAsDataURL(file);
+  // Actualizar el enlace de imagen proporcionado
+  const handleImageUrlChange = (e) => {
+    setImageUrl(e.target.value);
   };
 
   // Enviar el formulario
@@ -28,7 +25,7 @@ const Create = () => {
       description,
       team,
       goals_scored: parseInt(goalsScored, 10), // Asegura que sea un número
-      image_base64: imageBase64
+      image_base64: imageUrl // Ahora este campo será solo una URL
     };
 
     const fetchOptions = {
@@ -57,35 +54,35 @@ const Create = () => {
   return (
     <div className="create-container">
       <h1>Crear Nuevo Post</h1>
-      {errorMessage && <div className="error-message">{errorMessage}</div>}
-      {successMessage && <div className="success-message">{successMessage}</div>}
+      {errorMessage && <div className="create-error-message">{errorMessage}</div>}
+      {successMessage && <div className="create-success-message">{successMessage}</div>}
 
-      <div className="form-group">
-        <label htmlFor="title">Título:</label>
-        <input id="title" type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
+      <div className="create-form-group">
+        <label className="create-label" htmlFor="title">Nombre de la jugadora:</label>
+        <input className="create-input" id="title" type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
       </div>
 
-      <div className="form-group">
-        <label htmlFor="description">Descripción:</label>
-        <textarea id="description" value={description} onChange={(e) => setDescription(e.target.value)} />
+      <div className="create-form-group">
+        <label className="create-label" htmlFor="description">Descripción:</label>
+        <textarea className="create-textarea" id="description" value={description} onChange={(e) => setDescription(e.target.value)} />
       </div>
 
-      <div className="form-group">
-        <label htmlFor="team">Equipo:</label>
-        <input id="team" type="text" value={team} onChange={(e) => setTeam(e.target.value)} />
+      <div className="create-form-group">
+        <label className="create-label" htmlFor="team">Equipo:</label>
+        <input className="create-input" id="team" type="text" value={team} onChange={(e) => setTeam(e.target.value)} />
       </div>
 
-      <div className="form-group">
-        <label htmlFor="goalsScored">Goles:</label>
-        <input id="goalsScored" type="number" value={goalsScored} onChange={(e) => setGoalsScored(e.target.value)} />
+      <div className="create-form-group">
+        <label className="create-label" htmlFor="goalsScored">Número de goles:</label>
+        <input className="create-input" id="goalsScored" type="number" value={goalsScored} onChange={(e) => setGoalsScored(e.target.value)} />
       </div>
 
-      <div className="form-group">
-        <label htmlFor="imageUpload">Imagen:</label>
-        <input id="imageUpload" type="file" onChange={handleImageUpload} />
+      <div className="create-form-group">
+        <label className="create-label" htmlFor="imageUrl">Enlace de Imagen:</label>
+        <input className="create-input" id="imageUrl" type="text" value={imageUrl} onChange={handleImageUrlChange} />
       </div>
 
-      <button onClick={handleSubmit}>Crear Post</button>
+      <button className="create-button" onClick={handleSubmit}>Crear Post</button>
     </div>
   );
 };
