@@ -1,0 +1,58 @@
+/* Estilos principales para AdminHome */
+.container {
+    margin-top: 40px;
+    padding: 20px;
+    background-color: rgba(60, 179, 113, 0.8); /* Verde claro con opacidad */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 350px;
+  }
+  
+  .text-center {
+    text-align: center;
+  }
+  
+  .mt-5 {
+    margin-top: 40px;
+  }
+  
+  .mb-4 {
+    margin-bottom: 30px;
+  }
+  
+  /* Título principal */
+  h1 {
+    font-family: 'Arial', sans-serif;
+    color: white;   
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+  
+  /* Botones para las acciones administrativas */
+  .d-flex {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  button {
+    margin: 10px;
+    width: 200px;
+    height: 50px;
+    background-color: #4caf50; /* Verde brillante */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-family: 'Arial', sans-serif;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s;
+  }
+  
+  button:hover {
+    background-color: #388e3c; /* Verde más oscuro al pasar el ratón */
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+  }
+  
+  
