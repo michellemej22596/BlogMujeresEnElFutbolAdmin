@@ -3,9 +3,9 @@
   outline: none;
   box-sizing: border-box;
   padding: 5px 5px; /* Ajustado para equilibrar el padding */
-  border: 1px solid #a85a32; /* Color más cálido */
+  border: 1px solid #116415; /* Color más cálido */
   background-color: #fff3e6; /* Fondo claro */
-  color: #76323f; /* Color de texto más cálido */
+  color: #4caf50; /* Color de texto más cálido */
   border-radius: 5px;
   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); 
 }
@@ -15,9 +15,9 @@
 }
 
 .label {
-  font-size: 16px; /* Tamaño aumentado para mejorar la legibilidad */
-  font-family: 'Playfair Display', serif; /* Cambiado a una fuente más elegante */
-  color: #76323f; /* Color de texto más cálido */
+  font-size: 15px; /* Tamaño aumentado para mejorar la legibilidad */
+  font-family: 'Arial', sans-serif;
+  color: white; /* Color de texto más cálido */
 }
 
 .input-container {
