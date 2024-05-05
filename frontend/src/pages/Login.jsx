@@ -25,7 +25,7 @@ const Login = ({ setToken }) => {
   const handleSubmit = async () => {
     // Cuerpo de la solicitud con las credenciales proporcionadas
     const body = {
-      username, // Asegúrate de que el nombre coincide con lo esperado en la API
+      email: username, // Asegúrate de que el nombre coincide con lo esperado en la API
       password
     };
 
@@ -40,7 +40,7 @@ const Login = ({ setToken }) => {
 
     try {
       // Solicitud a la API de autenticación
-      const response = await fetch('http://localhost:22596/login', fetchOptions);
+      const response = await fetch('http://localhost:22596/auth/login', fetchOptions);
       const data = await response.json();
 
       if (response.ok) {
