@@ -22,8 +22,6 @@ const AdminHome = () => {
       <h1 className="mb-4">Menú Principal</h1>
       <div className="d-flex flex-column align-items-center">
         <button onClick={navigateToCreate}>Crear Post</button>
-        <button onClick={navigateToEdit}>Editar Post</button>
-        <button onClick={navigateToDelete}>Eliminar Post</button>
         <button onClick={navigateToSelect}>Seleccionar Post</button>
         <button onClick={handleLogout}>Cerrar Sesión</button>
       </div>

@@ -1,9 +1,9 @@
 // frontend/src/pages/SelectPostToEdit.jsx
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../styles/SelectPostToEdit.css'; // Crea esta hoja de estilos para el diseño
+import '../styles/SelectPostToEdit.css'; // Asegúrate de tener una hoja de estilos para esta página
 
-const Select = () => {
+const SelectPostToEdit = () => {
     const [posts, setPosts] = useState([]);
     const [errorMessage, setErrorMessage] = useState('');
     const navigate = useNavigate();
@@ -28,9 +28,27 @@ const Select = () => {
         navigate(`/edit/${postId}`);
     };
 
+    // Eliminar el post seleccionado y actualizar la lista
+    const handleDelete = async (postId) => {
+        try {
+            const response = await fetch(`http://localhost:22596/posts/${postId}`, {
+                method: 'DELETE'
+            });
+
+            if (response.ok) {
+                // Filtrar el post eliminado de la lista local
+                setPosts(posts.filter(post => post.id !== postId));
+            } else {
+                setErrorMessage('Error al eliminar el post.');
+            }
+        } catch (error) {
+            setErrorMessage('Error al comunicarse con el servidor.');
+        }
+    };
+
     return (
         <div className="select-post">
-            <h1>Selecciona un Post para Editar</h1>
+            <h1>Selecciona un Post</h1>
             {errorMessage && (
                 <div className="error-message" onClick={() => setErrorMessage('')}>
                     {errorMessage}
@@ -41,6 +59,7 @@ const Select = () => {
                     <li key={post.id} className="post-item">
                         <span>{post.title}</span>
                         <button onClick={() => handleEdit(post.id)}>Editar</button>
+                        <button onClick={() => handleDelete(post.id)}>Eliminar</button>
                     </li>
                 ))}
             </ul>
@@ -48,4 +67,4 @@ const Select = () => {
     );
 };
 
-export default Select;
+export default SelectPostToEdit;
