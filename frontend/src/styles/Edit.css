@@ -1,0 +1,54 @@
+/* frontend/src/styles/Edit.css */
+
+.edit-form {
+    margin-top: 40px;
+    margin-bottom: 40px;
+    max-width: 350px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.edit-form h1 {
+    font-size: 24px;
+    color: #006400;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.error-message {
+    border: 1px solid #e34850;
+    color: #e34850;
+    background-color: #f8e2e4;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.edit-form input, .edit-form textarea {
+    border: 1px solid #006400;
+    padding: 8px;
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}
+
+.edit-form button {
+    background-color: #006400;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.edit-form button:hover {
+    background-color: #004d00;
+}

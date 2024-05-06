@@ -1,93 +1,89 @@
-// frontend/src/pages/CreatePost.jsx
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import '../styles/CreatePost.css';
+// frontend/src/pages/Edit.jsx
+import React, { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import Input from '../components/Input';
+import Button from '../components/Button';
+import '../styles/Edit.css'; // Crea esta hoja de estilos para la página
 
 const Edit = () => {
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
-  const [team, setTeam] = useState('');
-  const [goalsScored, setGoalsScored] = useState('');
-  const [imageBase64, setImageBase64] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
-  const [successMessage, setSuccessMessage] = useState('');
-  const navigate = useNavigate();
+    // Obtener el postId de la URL
+    const { postId } = useParams();
+    const navigate = useNavigate();
 
-  // Manejar la conversión de una imagen a Base64
-  const handleImageUpload = (e) => {
-    const file = e.target.files[0];
-    const reader = new FileReader();
-    reader.onloadend = () => setImageBase64(reader.result);
-    reader.readAsDataURL(file);
-  };
+    // Estados para los datos del post
+    const [title, setTitle] = useState('');
+    const [description, setDescription] = useState('');
+    const [team, setTeam] = useState('');
+    const [goalsScored, setGoalsScored] = useState('');
+    const [imageUrl, setImageUrl] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
 
-  // Enviar el formulario
-  const handleSubmit = async () => {
-    const body = {
-      title,
-      description,
-      team,
-      goals_scored: parseInt(goalsScored, 10), // Asegura que sea un número
-      image_base64: imageBase64
+    // Obtener el post actual para editar
+    useEffect(() => {
+        const fetchPost = async () => {
+            try {
+                const response = await fetch(`http://localhost:22596/posts/${postId}`);
+                const post = await response.json();
+                setTitle(post.title);
+                setDescription(post.description);
+                setTeam(post.team);
+                setGoalsScored(post.goals_scored);
+                setImageUrl(post.image_base64);
+            } catch (error) {
+                setErrorMessage('Error al obtener el post.');
+            }
+        };
+
+        fetchPost();
+    }, [postId]);
+
+    // Manejar la actualización del post
+    const handleSubmit = async () => {
+        const body = {
+            title,
+            description,
+            team,
+            goals_scored: parseInt(goalsScored, 10),
+            image_base64: imageUrl
+        };
+
+        const fetchOptions = {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(body)
+        };
+
+        try {
+            const response = await fetch(`http://localhost:22596/posts/${postId}`, fetchOptions);
+
+            if (response.ok) {
+                navigate('/admin'); // Redirige al menú principal tras una edición exitosa
+            } else {
+                setErrorMessage('Error al actualizar el post.');
+            }
+        } catch (error) {
+            setErrorMessage('Error al comunicarse con el servidor.');
+        }
     };
 
-    const fetchOptions = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${localStorage.getItem('token')}` // Añade el token si es necesario
-      },
-      body: JSON.stringify(body)
-    };
-
-    try {
-      const response = await fetch('http://localhost:22596/posts', fetchOptions);
-      if (response.ok) {
-        setSuccessMessage('Post creado con éxito');
-        navigate('/admin');
-      } else {
-        const data = await response.json();
-        setErrorMessage(data.message || 'Error al crear el post.');
-      }
-    } catch (error) {
-      setErrorMessage('Error al comunicarse con el servidor.');
-    }
-  };
-
-  return (
-    <div className="create-container">
-      <h1>Crear Nuevo Post</h1>
-      {errorMessage && <div className="error-message">{errorMessage}</div>}
-      {successMessage && <div className="success-message">{successMessage}</div>}
-
-      <div className="form-group">
-        <label htmlFor="title">Título:</label>
-        <input id="title" type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
-      </div>
-
-      <div className="form-group">
-        <label htmlFor="description">Descripción:</label>
-        <textarea id="description" value={description} onChange={(e) => setDescription(e.target.value)} />
-      </div>
-
-      <div className="form-group">
-        <label htmlFor="team">Equipo:</label>
-        <input id="team" type="text" value={team} onChange={(e) => setTeam(e.target.value)} />
-      </div>
-
-      <div className="form-group">
-        <label htmlFor="goalsScored">Goles:</label>
-        <input id="goalsScored" type="number" value={goalsScored} onChange={(e) => setGoalsScored(e.target.value)} />
-      </div>
-
-      <div className="form-group">
-        <label htmlFor="imageUpload">Imagen:</label>
-        <input id="imageUpload" type="file" onChange={handleImageUpload} />
-      </div>
-
-      <button onClick={handleSubmit}>Crear Post</button>
-    </div>
-  );
+    return (
+        <aside className="edit-form">
+            <h1>Editar Post</h1>
+            {errorMessage && (
+                <div className="error-message" onClick={() => setErrorMessage('')}>
+                    {errorMessage}
+                </div>
+            )}
+            <Input label="Nombre de la jugadora" type="text" value={title} onChange={setTitle} />
+            <Input label="Descripción" type="textarea" value={description} onChange={setDescription} />
+            <Input label="Equipo" type="text" value={team} onChange={setTeam} />
+            <Input label="Número de goles" type="number" value={goalsScored} onChange={setGoalsScored} />
+            <Input label="Enlace de imagen" type="text" value={imageUrl} onChange={setImageUrl} />
+            <Button text="Actualizar Post" onClick={handleSubmit} />
+        </aside>
+    );
 };
 
 export default Edit;
