@@ -9,6 +9,7 @@ import Posts from './pages/Posts';
 import Create from './pages/Create';
 import Edit from './pages/Edit';
 import Delete from './pages/Delete';
+import Select from './pages/SelectPostToEdit';
 
 function Pages({ token, setToken }) {
   return (
@@ -20,8 +21,9 @@ function Pages({ token, setToken }) {
       <Route path="/register" element={<Register />} />
       <Route path="/admin" element={<AdminHome />} />
       <Route path="/admin/create" element={<Create />} />
-      <Route path="/admin/edit" element={<Edit />} />
+      <Route path="edit/:postId" element={<Edit />} />
       <Route path="/admin/delete" element={<Delete />} />
+      <Route path="/admin/select" element={<Select />} />
     </Routes>
   );
 }

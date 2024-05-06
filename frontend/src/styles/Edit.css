@@ -1,54 +1,78 @@
 /* frontend/src/styles/Edit.css */
 
-.edit-form {
-    margin-top: 40px;
-    margin-bottom: 40px;
-    max-width: 350px;
-    background-color: rgba(255, 255, 255, 0.8);
+/* Contenedor principal */
+.edit-container {
+    width: 80%;
+    width: 400px;
+    margin: 40px auto;
+    background-color:rgba(255, 255, 255, 0.8);
+    padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 5px;
 }
 
-.edit-form h1 {
-    font-size: 24px;
+/* Título de la página */
+.edit-title {
+    font-size: 1.8em;
     color: #006400;
-    margin-bottom: 15px;
     text-align: center;
+    margin-bottom: 20px;
 }
 
-.error-message {
-    border: 1px solid #e34850;
-    color: #e34850;
-    background-color: #f8e2e4;
-    border-radius: 5px;
-    padding: 10px;
-    margin-bottom: 10px;
-    text-align: center;
+/* Etiquetas de los campos */
+.edit-label {
+    font-size: 1.1em;
+    color: #333;
+    margin-bottom: 4px;
 }
 
-.edit-form input, .edit-form textarea {
-    border: 1px solid #006400;
-    padding: 8px;
-    border-radius: 5px;
+/* Inputs de los formularios */
+.edit-input,
+.edit-textarea {
     width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #006400;
+    border-radius: 4px;
+    background-color: #f9f9f9;
     box-sizing: border-box;
-    margin-bottom: 10px;
 }
 
-.edit-form button {
-    background-color: #006400;
+/* Ajustes específicos para el textarea */
+.edit-textarea {
+    resize: vertical;
+    height: 100px;
+}
+
+/* Botón para guardar cambios */
+.edit-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #006400; /* Dark green */
     color: white;
-    padding: 10px 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    font-size: 1em;
+    text-transform: uppercase;
+    transition: background-color 0.3s;
 }
 
-.edit-form button:hover {
-    background-color: #004d00;
+.edit-button:hover {
+    background-color: #004c00; /* Slightly darker green */
+}
+
+/* Mensaje de éxito */
+.success-message {
+    padding: 10px;
+    margin-bottom: 15px;
+    background-color: #dff0d8;
+    border: 1px solid #c3e6cb;
+    color: #3c763d;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
 }

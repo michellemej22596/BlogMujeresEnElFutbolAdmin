@@ -14,6 +14,8 @@ const AdminHome = () => {
   const navigateToCreate = () => navigate('/admin/create');
   const navigateToEdit = () => navigate('/admin/edit');
   const navigateToDelete = () => navigate('/admin/delete');
+  
+  const navigateToSelect = () => navigate('/admin/select');
 
   return (
     <div className="container text-center mt-5">
@@ -22,6 +24,7 @@ const AdminHome = () => {
         <button onClick={navigateToCreate}>Crear Post</button>
         <button onClick={navigateToEdit}>Editar Post</button>
         <button onClick={navigateToDelete}>Eliminar Post</button>
+        <button onClick={navigateToSelect}>Seleccionar Post</button>
         <button onClick={handleLogout}>Cerrar Sesión</button>
       </div>
     </div>

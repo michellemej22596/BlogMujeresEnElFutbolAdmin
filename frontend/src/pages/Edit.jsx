@@ -1,24 +1,20 @@
 // frontend/src/pages/Edit.jsx
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import Input from '../components/Input';
-import Button from '../components/Button';
-import '../styles/Edit.css'; // Crea esta hoja de estilos para la página
+import '../styles/Edit.css';
 
 const Edit = () => {
-    // Obtener el postId de la URL
     const { postId } = useParams();
     const navigate = useNavigate();
 
-    // Estados para los datos del post
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [team, setTeam] = useState('');
-    const [goalsScored, setGoalsScored] = useState('');
-    const [imageUrl, setImageUrl] = useState('');
-    const [errorMessage, setErrorMessage] = useState('');
+    const [goalsScored, setGoalsScored] = useState(0);
+    const [imageBase64, setImageBase64] = useState('');
+    const [successMessage, setSuccessMessage] = useState('');
 
-    // Obtener el post actual para editar
+    // Cargar los datos iniciales del post a editar
     useEffect(() => {
         const fetchPost = async () => {
             try {
@@ -28,23 +24,23 @@ const Edit = () => {
                 setDescription(post.description);
                 setTeam(post.team);
                 setGoalsScored(post.goals_scored);
-                setImageUrl(post.image_base64);
+                setImageBase64(post.image_base64);
             } catch (error) {
-                setErrorMessage('Error al obtener el post.');
+                console.error('Error al obtener el post:', error);
             }
         };
 
         fetchPost();
     }, [postId]);
 
-    // Manejar la actualización del post
-    const handleSubmit = async () => {
+    // Manejar el evento de guardar cambios
+    const handleSaveChanges = async () => {
         const body = {
             title,
             description,
             team,
-            goals_scored: parseInt(goalsScored, 10),
-            image_base64: imageUrl
+            goals_scored: goalsScored,
+            image_base64: imageBase64
         };
 
         const fetchOptions = {
@@ -57,32 +53,40 @@ const Edit = () => {
 
         try {
             const response = await fetch(`http://localhost:22596/posts/${postId}`, fetchOptions);
-
             if (response.ok) {
-                navigate('/admin'); // Redirige al menú principal tras una edición exitosa
+                setSuccessMessage('¡Los cambios se guardaron exitosamente!');
+                setTimeout(() => {
+                    navigate('/admin');
+                }, 2000); // Redirige al menú principal después de 2 segundos
             } else {
-                setErrorMessage('Error al actualizar el post.');
+                console.error('Error al guardar los cambios');
             }
         } catch (error) {
-            setErrorMessage('Error al comunicarse con el servidor.');
+            console.error('Error al comunicarse con el servidor:', error);
         }
     };
 
     return (
-        <aside className="edit-form">
-            <h1>Editar Post</h1>
-            {errorMessage && (
-                <div className="error-message" onClick={() => setErrorMessage('')}>
-                    {errorMessage}
-                </div>
-            )}
-            <Input label="Nombre de la jugadora" type="text" value={title} onChange={setTitle} />
-            <Input label="Descripción" type="textarea" value={description} onChange={setDescription} />
-            <Input label="Equipo" type="text" value={team} onChange={setTeam} />
-            <Input label="Número de goles" type="number" value={goalsScored} onChange={setGoalsScored} />
-            <Input label="Enlace de imagen" type="text" value={imageUrl} onChange={setImageUrl} />
-            <Button text="Actualizar Post" onClick={handleSubmit} />
-        </aside>
+        <div className="edit-container">
+            <h1 className="edit-title">Editar Post</h1>
+            {successMessage && <div className="success-message">{successMessage}</div>}
+            <label className="edit-label">Título:</label>
+            <input className="edit-input" value={title} onChange={e => setTitle(e.target.value)} />
+
+            <label className="edit-label">Descripción:</label>
+            <textarea className="edit-textarea" value={description} onChange={e => setDescription(e.target.value)} />
+
+            <label className="edit-label">Equipo:</label>
+            <input className="edit-input" value={team} onChange={e => setTeam(e.target.value)} />
+
+            <label className="edit-label">Goles:</label>
+            <input className="edit-input" type="number" value={goalsScored} onChange={e => setGoalsScored(Number(e.target.value))} />
+
+            <label className="edit-label">Enlace de la Imagen:</label>
+            <input className="edit-input" value={imageBase64} onChange={e => setImageBase64(e.target.value)} />
+
+            <button className="edit-button" onClick={handleSaveChanges}>Guardar Cambios</button>
+        </div>
     );
 };
 
