@@ -18,7 +18,7 @@ const Edit = () => {
     useEffect(() => {
         const fetchPost = async () => {
             try {
-                const response = await fetch(`http://localhost:22596/posts/${postId}`);
+                const response = await fetch(`https://api.tiburoncin.lat/22596/posts/${postId}`);
                 const post = await response.json();
                 setTitle(post.title);
                 setDescription(post.description);
@@ -52,7 +52,7 @@ const Edit = () => {
         };
 
         try {
-            const response = await fetch(`http://localhost:22596/posts/${postId}`, fetchOptions);
+            const response = await fetch(`https://api.tiburoncin.lat/22596/posts/${postId}`, fetchOptions);
             if (response.ok) {
                 setSuccessMessage('¡Los cambios se guardaron exitosamente!');
                 setTimeout(() => {

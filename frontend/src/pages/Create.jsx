@@ -38,7 +38,7 @@ const Create = () => {
     };
 
     try {
-      const response = await fetch('http://localhost:22596/posts', fetchOptions);
+      const response = await fetch('https://api.tiburoncin.lat/22596/posts', fetchOptions);
       if (response.ok) {
         setSuccessMessage('Post creado con éxito');
         navigate('/admin');

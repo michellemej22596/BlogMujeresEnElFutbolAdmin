@@ -12,7 +12,7 @@ const SelectPostToEdit = () => {
     useEffect(() => {
         const fetchPosts = async () => {
             try {
-                const response = await fetch('http://localhost:22596/posts');
+                const response = await fetch('https://api.tiburoncin.lat/22596/posts');
                 const data = await response.json();
                 setPosts(data);
             } catch (error) {
@@ -31,7 +31,7 @@ const SelectPostToEdit = () => {
     // Eliminar el post seleccionado y actualizar la lista
     const handleDelete = async (postId) => {
         try {
-            const response = await fetch(`http://localhost:22596/posts/${postId}`, {
+            const response = await fetch(`https://api.tiburoncin.lat/22596/posts/${postId}`, {
                 method: 'DELETE'
             });
 

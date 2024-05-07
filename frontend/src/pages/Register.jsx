@@ -45,7 +45,7 @@ const Register = () => {
 
     // Solicitud a la API de registro
     try {
-      const response = await fetch('http://localhost:22596/auth/register', fetchOptions);
+      const response = await fetch('https://api.tiburoncin.lat/22596/auth/register', fetchOptions);
       if (response.ok) {
         console.log('¡Registro exitoso!');
         navigate('/login'); // Redirigir al usuario a la página de inicio de sesión después del registro
@@ -62,7 +62,7 @@ const Register = () => {
   return (
     <aside className="login">
       <div className="logo-container">
-        <img className="login-logo" src="../../public/images/logo.png" alt="Logo del Restaurante" />
+        <img className="login-logo" src="https://png.pngtree.com/png-clipart/20230930/original/pngtree-flaming-soccer-ball-png-png-image_13023197.png" alt="Logo del Restaurante" />
       </div>
       <h1 className="title">Registra un nuevo usuario</h1>
       {errorMessage && (

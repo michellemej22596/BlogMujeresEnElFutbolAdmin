@@ -10,7 +10,7 @@ export default function Posts() {
     useEffect(() => {
         const fetchPosts = async () => {
             try {
-                const response = await fetch('http://localhost:22596/posts');
+                const response = await fetch('https://api.tiburoncin.lat/22596/posts');
                 if (!response.ok) throw new Error('Error al obtener los posts');
                 const posts = await response.json();
                 setPosts(posts);

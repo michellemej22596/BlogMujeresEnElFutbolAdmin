@@ -40,7 +40,7 @@ const Login = ({ setToken }) => {
 
     try {
       // Solicitud a la API de autenticación
-      const response = await fetch('http://localhost:22596/auth/login', fetchOptions);
+      const response = await fetch('https://api.tiburoncin.lat/22596/auth/login', fetchOptions);
       const data = await response.json();
 
       if (response.ok) {
@@ -64,7 +64,7 @@ const Login = ({ setToken }) => {
   return (
     <aside className="login">
       <div className="logo-container">
-        <img className="login-logo" src="../../public/images/logo.png" alt="Logo del Restaurante" />
+        <img className="login-logo" src="https://png.pngtree.com/png-clipart/20230930/original/pngtree-flaming-soccer-ball-png-png-image_13023197.png" />
       </div>
       <h1 className="title">¡Bienvenido(a)!</h1>
       {errorMessage && (
