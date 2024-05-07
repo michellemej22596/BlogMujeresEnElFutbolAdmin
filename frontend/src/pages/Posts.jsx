@@ -1,5 +1,5 @@
 // frontend/src/pages/Posts.jsx
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Post from '../components/Post';
 
 export default function Posts() {

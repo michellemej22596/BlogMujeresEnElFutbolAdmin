@@ -1,7 +1,5 @@
-// frontend/src/pages/AdminHome.jsx
-import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../styles/AdminHome.css'; // Ruta relativa para importar la hoja de estilos
+import '../styles/AdminHome.css'; 
 
 const AdminHome = () => {
   const navigate = useNavigate();
@@ -11,10 +9,7 @@ const AdminHome = () => {
     navigate('/login');
   };
 
-  const navigateToCreate = () => navigate('/admin/create');
-  const navigateToEdit = () => navigate('/admin/edit');
-  const navigateToDelete = () => navigate('/admin/delete');
-  
+  const navigateToCreate = () => navigate('/admin/create');  
   const navigateToSelect = () => navigate('/admin/select');
 
   return (

@@ -1,5 +1,5 @@
 // frontend/src/pages/SelectPostToEdit.jsx
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/SelectPostToEdit.css'; // Asegúrate de tener una hoja de estilos para esta página
 

@@ -1,21 +1,19 @@
-import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import Home from './pages/Home';
 import AdminHome from './pages/AdminHome';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Posts from './pages/Posts';
-
 import Create from './pages/Create';
 import Edit from './pages/Edit';
 import Delete from './pages/Delete';
 import Select from './pages/SelectPostToEdit';
+import PropTypes from 'prop-types';
 
 function Pages({ token, setToken }) {
   return (
     <Routes>
-      <Route path="/" element={token ? <Home /> : <Navigate to="/login" />} /> 
-      
+      <Route path="/" element={token ? <Home /> : <Navigate to="/login" />} />
       <Route path="posts" element={<Posts />} />
       <Route path="/login" element={<Login setToken={setToken} />} />
       <Route path="/register" element={<Register />} />
@@ -27,5 +25,10 @@ function Pages({ token, setToken }) {
     </Routes>
   );
 }
+
+Pages.propTypes = {
+  token: PropTypes.string,
+  setToken: PropTypes.func.isRequired
+};
 
 export default Pages;
