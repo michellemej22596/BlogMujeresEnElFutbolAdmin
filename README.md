@@ -4,6 +4,11 @@
 ## Descripción del Proyecto
 Este proyecto es un blog dedicado a destacar y celebrar las carreras de mujeres futbolistas alrededor del mundo. Los usuarios pueden ver información detallada sobre jugadoras, incluyendo estadísticas de su carrera, mientras que los administradores pueden gestionar publicaciones a través de una ruta `/admin`.
 
+Enlace para blog público http://tiburoncin.lat/22596/react-blog/
+Enlaces para blog admin 
+(Debes registrarte) https://stately-paprenjak-3d3ded.netlify.app/register
+(Inicia sesión) https://stately-paprenjak-3d3ded.netlify.app/login
+
 ## Tecnologías Utilizadas
 
 ### Frontend
@@ -29,7 +34,7 @@ git clone https://github.com/michellemej22596/BlogMujeresEnElFutbolAdmin.git
 
 ### 4. Navega a http://localhost:3000/admin para acceder a la interfaz administrativa.
 
-Nota
+## Nota
 Asegúrate de tener Node.js y npm instalados antes de ejecutar el proyecto localmente.
 
 Endpoints Importantes
@@ -37,8 +42,9 @@ GET /posts: Obtiene todas las publicaciones.
 POST /posts: Crea una nueva publicación (solo admins).
 PUT /posts/:id: Actualiza una publicación por su ID (solo admins).
 DELETE /posts/:id: Elimina una publicación por su ID (solo admins).
-Contribuciones
+
+## Contribuciones
 Si deseas contribuir a este proyecto, por favor lee CONTRIBUTING.md para obtener más información.
 
-Licencia
+## Licencia
 Este proyecto está licenciado bajo el MIT.
